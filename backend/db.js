@@ -1,36 +1,64 @@
-import { MongoClient } from 'mongodb';
+import { MongoClient, ObjectId } from 'mongodb';
 
-const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/todos';
-const MONGO_DB = process.env.MONGO_DB || 'todos';
+const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/products';
+const MONGO_DB = process.env.MONGO_DB || 'products';
 
-let db = null;
-let collection = null;
+
 export default class DB {
+    /** Connect to MongoDB and open client */
     connect() {
         return MongoClient.connect(MONGO_URI)
-            .then(function (client) {
-                db = client.db(MONGO_DB);
-                collection = db.collection('todos');
+            .then((_client) => {
+                this.client = _client;
+                this.db = this.client.db(MONGO_DB);
+                this.collection = this.db.collection('products');
+                console.log("Connected to MongoDB");
             })
     }
 
+    /** Close client connection to MongoDB 
+     * @returns {Promise} - Promise that resolves when connection is closed
+    */
+    close() {
+        return this.client.close()
+    }
+
+    /** Query all products from database
+     * @returns {Promise} - Promise that resolves to an array of products
+     */
     queryAll() {
-        return collection.find().toArray();
+        return this.collection.find().toArray();
     }
 
+    /** Query a single product by id
+     * @param {string} id - id of product to query
+     * @returns {Promise} - Promise that resolves to a product object 
+     */
     queryById(id) {
-        // TODO: Implement queryById
+        // TODO: Implement query by id
     }
 
-    update(id, order) {
-        // TODO: Implement update
+    /** Update product by id
+     * @param {string} id - id of product to update
+     * @returns {Promise} - Promise with updated product
+     */
+    update(id, product) {
+        //TODO: Implement update
     }
 
+    /** Delete product by id
+     * @param {string} id - id of product to delete
+     * @returns {Promise} - Promise with deleted product
+     */
     delete(id) {
         // TODO: Implement delete
     }
 
-    insert(order) {
+    /** Insert product
+     * @param {object} product - product to insert
+     * @returns {Promise} - Promise with inserted product
+     */
+    insert(product) {
         // TODO: Implement insert
     }
 }

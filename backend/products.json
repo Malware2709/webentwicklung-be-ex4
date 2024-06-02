@@ -1,0 +1,22 @@
+[
+    {
+        "_id": {
+            "$oid": "647f1654be8df684218752bb"
+        },
+        "name": "Babelfisch",
+        "description": "Universalübersetzer der neuesten Generation",
+        "price": 42.0,
+        "stock": 42,
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Babelfisch.jpg/1200px-Babelfisch.jpg"
+    },
+    {
+        "_id": {
+            "$oid": "647f16c04088d9a6028aaa0d"
+        },
+        "name": "Marvin",
+        "description": "Roboter mit depressiven Zügen",
+        "price": 42.0,
+        "stock": 1,
+        "image_url": "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/0a292d25374347.56344609c4027.jpg"
+    }
+]
